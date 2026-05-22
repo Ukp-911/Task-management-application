@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState={
-    value:0,
+    value:localStorage.getItem('pastes')? JSON.parse(localStorage.getItem('pastes')):[],
 }
 const pasteslice = createSlice({
     name:'paste',
     initialState,
     reducers:{
         addpaste:(state,action)=>{
-
+            
         },
         deletepaste:(state,action)=>{
 

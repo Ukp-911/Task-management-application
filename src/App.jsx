@@ -4,6 +4,8 @@ import About from './components/About.jsx'
 import Viewpastes from './components/Viewpastes.jsx'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Layout from './components/Layout.jsx'
+import { Toaster } from "react-hot-toast"
+
 function Todo2() {
 	const routes = createBrowserRouter([
 		{
@@ -27,6 +29,7 @@ function Todo2() {
 	])
 	return (
 		<div>
+			<Toaster/>
 			<RouterProvider router={routes} />
 		</div>
 	)

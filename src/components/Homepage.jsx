@@ -1,32 +1,58 @@
 import { useState } from 'react'
 import './homepage.css'
+import { addpaste } from '../pasteslice.jsx'
+import { useDispatch } from 'react-redux'
+import toast from 'react-hot-toast'
 const Homepage = () => {
 
-	const [title,settitle]=useState("")
-	const [content,setcontent]=useState("")
+	const [title, settitle] = useState("")
+	const [content, setcontent] = useState("")
+	const [titleError,settitleError]=useState(false)
+	const [contError,setcontError] =useState(false)
 
-	const handlecreatebtn=(e)=>{
+	const notify=()=>{
+		toast("new paste created")
+	}
+	const handlecreatepst = (e) => {
 		e.preventDefault()
-		if(content && title){
-			console.log(content)
+		if (title===""){
+			settitleError(true)
+		}
+		else if (content===""){
+			setcontError(true)
+		}
+		if (title!==""&&content!==""){
+			notify()
 		}
 	}
 
-	const handleinpchnge=(e)=>{
+	const handleinpchnge = (e) => {
 		settitle(e.target.value)
+		if (title!==""){
+			settitleError(false)
+		}
 	}
 
-	const handletextchnge=(e)=>{
+	const handletextchnge = (e) => {
 		setcontent(e.target.value)
+		if (setcontent!==""){
+			setcontError(false)
+		}
 	}
 	return (
 		<>
 			<div className='home'>
-				<input type="text" placeholder='Enter your title' onChange={handleinpchnge}/>
-				<button onClick={handlecreatebtn}>Create Paste</button>
+				<input id='ukp' type="text" placeholder='Enter your title' onChange={handleinpchnge}
+				style={{
+					borderColor : titleError ? "red":""
+				}}/>
+				<button onClick={handlecreatepst}>Create Paste</button>
 			</div>
 			<div className="text">
-				<textarea placeholder='Likh na Maderchod' onChange={handletextchnge}/>
+				<textarea id='pkp' placeholder='Likh na Maderchod' onChange={handletextchnge}
+				style={{
+					borderColor : contError? "red":""
+				}} />
 			</div>
 		</>
 	)
