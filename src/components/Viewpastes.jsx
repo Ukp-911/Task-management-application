@@ -6,6 +6,20 @@ import Btn from '../btncomponents/btncomps.jsx'
 const Viewpastes = () => {
     const dummyPastes = useSelector((state) => state.paste.value)
     const [view, setview] = useState(false)
+    const [update,setupdate] = useState('')
+    const [pasteid,setpasteid]=useState('')
+
+    const Close =()=>{
+        setview(false)
+    }
+    const config={
+        view,
+        update,
+        pasteid,
+        Close,
+    }
+
+
 
     return (
         <div className="viewpaste-container">
@@ -13,7 +27,7 @@ const Viewpastes = () => {
             {view && (
                 <div className="overlay">
                     <div className="modal">
-                        <Btn onClose={() => setview(false)} /> 
+                        <Btn config={config} /> 
                     </div>
                 </div>
             )}
@@ -27,7 +41,7 @@ const Viewpastes = () => {
                                 <div className="paste-top">
                                     <h2>{paste.title}</h2>
                                     <div className="btn-group">
-                                        <button onClick={() => setview(true)}>View</button>
+                                        <button onClick={() => {setview(true),setpasteid(paste.id)}}>View</button>
                                         <button>Edit</button>
                                         <button>Delete</button>
                                     </div>

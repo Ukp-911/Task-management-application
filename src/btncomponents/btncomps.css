@@ -77,3 +77,11 @@
 .tex textarea:focus::placeholder {
     color: transparent;
 }
+
+#pk:disabled{
+    cursor: not-allowed;
+}
+
+#uk:disabled{
+    cursor: not-allowed;
+}
