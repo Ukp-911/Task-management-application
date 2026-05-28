@@ -11,7 +11,9 @@ const Viewpastes = () => {
 
     const Close =()=>{
         setview(false)
+        setupdate(false)
     }
+
     const config={
         view,
         update,
@@ -20,11 +22,10 @@ const Viewpastes = () => {
     }
 
 
-
     return (
         <div className="viewpaste-container">
 
-            {view && (
+            {(view || update) && (
                 <div className="overlay">
                     <div className="modal">
                         <Btn config={config} /> 
@@ -32,7 +33,7 @@ const Viewpastes = () => {
                 </div>
             )}
 
-            <div className={view ? "blurred" : ""}>
+            <div className={view||update ? "blurred" : ""}>
                 <h1 className="heading">All Pastes</h1>
                 <div className="paste-wrapper">
                     {
@@ -41,8 +42,8 @@ const Viewpastes = () => {
                                 <div className="paste-top">
                                     <h2>{paste.title}</h2>
                                     <div className="btn-group">
-                                        <button onClick={() => {setview(true),setpasteid(paste.id)}}>View</button>
-                                        <button>Edit</button>
+                                        <button onClick={() => {setview(true);setupdate(false);setpasteid(paste.id)}}>View</button>
+                                        <button onClick={()=>{setupdate(true);setview(false);setpasteid(paste.id)}}>Edit</button>
                                         <button>Delete</button>
                                     </div>
                                 </div>
